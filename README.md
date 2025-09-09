@@ -20,7 +20,7 @@ ssh-keygen -t rsa
 # Нажмите Enter 3 раза
 cat ~/.ssh/id_rsa.pub
 ```
-![](./misc/img/ssh-keygen.jpg)
+![рис. 1 — генерация ключа ](./misc/img/general_material/ssh-keygen.png)
 
 **Windows (PowerShell)**
 ```powershell
@@ -31,13 +31,13 @@ type $env:USERPROFILE\.ssh\id_rsa.pub
 **Добавьте ключ на GitHub**
 GitHub → Settings → **SSH and GPG keys** → **New SSH key** → вставьте содержимое `id_rsa.pub` → Save.  
 
-![](./misc/img/highlighted.jpg)
+![Пример ключа](./misc/img/general_material/highlighted.png)
 Копируем содержимое ключа
 
-![](./misc/img/settings.jpg)
+![](./misc/img/general_material/settings.jpg)
 Заходим в настрйки
 
-![](./misc/img/new_ssh.jpg)
+![](./misc/img/general_material/new_ssh.jpg)
 Добавляем новый ключ
 
 ## Как склонировать репозиторий на компьютер
@@ -48,9 +48,9 @@ cd ~/Desktop
 git clone git@github.com:<owner>/<repo>.git
 cd <repo>
 ```
-![](./misc/img/code-ssh.jpg)
+![](./misc/img/general_material/code-ssh.png)
 
-![](./misc/img/git-clone.jpg)
+![](./misc/img/lab01/%20clone_init_commit.png)
 
 ## Где смотреть задания
 - Для каждой лабораторной есть папка: `./src/lab01`, `./src/lab02`, ...  
