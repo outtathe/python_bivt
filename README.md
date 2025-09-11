@@ -25,7 +25,8 @@ cat ~/.ssh/id_rsa.pub
 **Windows (PowerShell)**
 ```powershell
 ssh-keygen -t rsa
-type $env:USERPROFILE\.ssh\id_rsa.pub
+cd .ssh
+type id_rsa.pub
 ```
 
 **Добавьте ключ на GitHub**
