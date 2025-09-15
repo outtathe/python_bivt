@@ -27,7 +27,6 @@ python_labs/
 
 ### 1) Создайте свой репозиторий
 GitHub → **New → Repository** → `python_labs` → Public → Create.
-
 ![Новый репозиторий](../../misc/img/lab01/new_repo.png)
 
 ### 2) Клонируйте и создайте папки
@@ -35,8 +34,7 @@ GitHub → **New → Repository** → `python_labs` → Public → Create.
 git clone git@github.com<nickname>/python_labs.git
 cd  python_labs
 mkdir -p src images
-echo "# ЛР1" > README.md
-git add . && git commit -m "init lab01" && git push
+git add . && git commit && git push
 ```
 ![клонирование](../../misc/img/lab01/%20clone_init_commit.png)
 
@@ -67,6 +65,7 @@ python --version
 python src/01_greeting.py
 ```
 ![Пример запуска](../../misc/img/lab01/run_example.png)
+#### **Демонстрацию работы кода обязательно поместить в `images/` в формате скриншота** 
 
 ### 6) Как оформить README.md
 - Номер задания, скриншот выполнения кода. (скриншоты обязательно подписать) 
