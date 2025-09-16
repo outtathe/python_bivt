@@ -1,2 +1,15 @@
-# scripts
-./scripts_
+# staff
+/_staff
+
+# cache
+.DS_Store
+
+# temporary
+/src/lab03
+/src/lab04
+/src/lab05
+/src/lab06
+/src/lab07
+/src/lab08
+/src/lab09
+/src/lab10
