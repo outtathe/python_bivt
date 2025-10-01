@@ -151,9 +151,9 @@ write_csv([("word","count"),("test",3)], "data/check.csv")  # создаст CSV
 
 ### Пример запуска
 ```bash
-python src/text_report.py                 # читает data/input.txt, пишет data/report.csv
+python src/lab04/text_report.py                 # читает data/input.txt, пишет data/report.csv
 # или
-python src/text_report.py --in data/in.txt --out data/out.csv
+python src/lab04/text_report.py --in data/in.txt --out data/out.csv
 ```
 
 ### Пример `report.csv`
@@ -229,7 +229,7 @@ word,count
 
 ### C. Кодировка cp1251
 **Вход:** `data/input.txt` в `cp1251` с текстом `Привет`  
-**Действие:** `python src/text_report.py --in data/input.txt --encoding cp1251`  
+**Действие:** `python src/lab04/text_report.py --in data/input.txt --encoding cp1251`  
 **Ожидание:** корректное чтение и отчёт `привет,1`.
 
 ### D★. Несколько файлов (пер‑файл и сводный)
@@ -237,7 +237,7 @@ word,count
 - `a.txt`: `Привет мир`  
 - `b.txt`: `Привет, привет!`  
 **Запуск:**  
-`python src/text_report.py --in data/a.txt data/b.txt --per-file data/report_per_file.csv --total data/report_total.csv`  
+`python src/lab04/text_report.py --in data/a.txt data/b.txt --per-file data/report_per_file.csv --total data/report_total.csv`  
 **Ожидаем:**
 - `report_per_file.csv` — как в примере в звёздочной части.  
 - `report_total.csv` — как в примере в звёздочной части.
