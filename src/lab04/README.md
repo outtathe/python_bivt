@@ -6,31 +6,108 @@
 ---
 
 ## Результат ЛР
-- Модуль ввода/вывода `src/io_txt_csv.py` с чистыми функциями для чтения текста и записи CSV.  
-- Скрипт `src/text_report.py`, который читает текст(ы) из файлов, считает частоты и сохраняет отчёты.  
+- Модуль ввода/вывода `src/lab04/io_txt_csv.py` с чистыми функциями для чтения текста и записи CSV.  
+- Скрипт `src/lab04/text_report.py`, который читает текст(ы) из файлов, считает частоты и сохраняет отчёты.  
 - README с примерами запуска, плюс 1–2 тестовых файла в `data/`.  
 - **Только стандартная библиотека** (`csv`, `pathlib`, `io`, `sys`, `argparse` — опционально). Python **3.хх+**.
 
 ---
+Структура репозитория (в формате ЛР2)
 
-## Структура репозитория (рекомендация)
+Свой **отдельный репозиторий** на GitHub:
 ```
-py-2025-lab04-<login>/
-├─ README.md
-├─ src/
-│  ├─ lib/
-│  │  └─ text.py           # из ЛР3 (переиспользуем, не переписываем)
-│  ├─ io_txt_csv.py        # read_text / write_csv (+ вспомогательные функции)
-│  └─ text_report.py       # основной скрипт генерации отчётов
+python_labs/
+├─ README.md                 # Общий отчет
+├─ src/                      # здесь — все скрипты по заданиям
+│  ├─ lib/                   # переиспользуемые модули
+│  │   └─ text.py            # из ЛР3
+│  ├─ lab01/
+|  ........
+│  ├─ lab04/                 # (эта лабораторная)
+│  │   ├─ io_txt_csv.py      # read_text / write_csv (+ ensure_parent_dir)
+│  │   └─ text_report.py     # генерация data/report.csv + ★
+│  ├─ lab05/
+|  ........
+│  └─ lab10/
 ├─ data/
-│  ├─ input.txt            # пример входа
-│  └─ report.csv           # результат работы (будет создан)
-└─ images/                 # скриншоты запуска
+│  └─ lab04/
+│      ├─ input.txt          # вход для базовой версии
+│      ├─ a.txt              # входы для ★ (несколько файлов)
+│      └─ b.txt
+└─ images/                   # сюда — скриншоты работы программ
+   ├─ lab01
+   ........           
+   ├─ lab04/                 # Папка lab04 теперь - непустая
+   |   ├─ img01.png          # пример запуска базовой версии
+   |   ........
+   |   └─ img05.png          # пример запуска со списком файлов (★)
+   ├─ lab05
+   ........
+   └─ lab10
 ```
+
 
 ---
+## Теория и формальные правила
 
-## Задание A — модуль `src/io_txt_csv.py`
+### Нормализация и токенизация (берём из ЛР3)
+- `norm(s)` = `casefold` → `ё→е` → заменить `\t\r\n` на пробел → схлопнуть пробелы.  
+- `tokenize(norm(s))` = все подстроки по шаблону `\w+(?:-\w+)*` (разделители — не-`\w`).
+
+### Частоты и сортировка
+- Для токенов `T = [t₁,…,tₙ]` частота `f(w) = |{ i : tᵢ = w }|`.  
+- Топ-N: сортировка пар `(w, f(w))` по ключу **`(-f(w), w)`** → берём первые N.
+
+### Формат CSV-отчётов
+- Базовый отчёт: **`word,count`**, строки отсортированы по `count ↓`, затем `word ↑`.  
+- Вариант «несколько файлов» (★): **`file,word,count`**, отсортировано `file ↑`, затем `count ↓`, затем `word ↑`.  
+- Кодировка файлов: по умолчанию `UTF-8` (в явном виде указываем при чтении/записи).
+
+---
+## Подсказки по коду (шаблоны)
+
+### Чтение текста
+```python
+from pathlib import Path
+
+def read_text(path: str | Path, encoding: str = "utf-8") -> str:
+    p = Path(path)
+    # FileNotFoundError и UnicodeDecodeError пусть «всплывают» — это нормально
+    return p.read_text(encoding=encoding)
+```
+
+### Запись CSV 
+```python
+import csv
+from pathlib import Path
+from typing import Iterable, Sequence
+
+def write_csv(rows: Iterable[Sequence], path: str | Path,
+              header: tuple[str, ...] | None = None) -> None:
+    p = Path(path)
+    rows = list(rows)
+    with p.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        if header is not None:
+            w.writerow(header)
+        for r in rows:
+            w.writerow(r)
+```
+### Генерация отчёта
+```python
+from collections import Counter
+
+def frequencies_from_text(text: str) -> dict[str, int]:
+    from lib.text import normalize, tokenize  # из ЛР3
+    tokens = tokenize(normalize(text))
+    return Counter(tokens)  # dict-like
+
+def sorted_word_counts(freq: dict[str, int]) -> list[tuple[str, int]]:
+    return sorted(freq.items(), key=lambda kv: (-kv[1], kv[0]))
+```
+---
+
+## Задание A — модуль `src/lab04/io_txt_csv.py`
 
 Реализуйте (с докстрингами и типами):
 
@@ -61,7 +138,7 @@ write_csv([("word","count"),("test",3)], "data/check.csv")  # создаст CSV
 
 ---
 
-## Задание B — скрипт `src/text_report.py`
+## Задание B — скрипт `src/lab04/text_report.py`
 
 Напишите скрипт, который:
 1) Читает **один** входной файл `data/input.txt` (путь можно захардкодить или принять параметром командной строки — опишите в README).  
@@ -168,8 +245,8 @@ word,count
 ---
 
 ## Что сдавать
-1. `src/io_txt_csv.py` и `src/text_report.py` (+ при необходимости `src/lib/text.py` из ЛР3, если его нет у проверяющего).  
-2. `README.md` с командами запуска (база + звёздочка), пояснением про кодировки и политикой для пустого входа.  (код не нужен)
+1. `src/lab04/io_txt_csv.py` и `src/lab04/text_report.py` (+ при необходимости `src/lib/text.py` из ЛР3, если его нет у проверяющего).  
+2. `README.md` с командами запуска, пояснением про кодировки и политикой для пустого входа.  (код не нужен)
 3. `data/` с 1–2 тестовыми файлами, `images/` со скриншотами запуска.
 
 ## Критерии допуска
