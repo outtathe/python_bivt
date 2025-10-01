@@ -205,7 +205,7 @@ A = 0 4 5
 
 ---
 ## Что сдавать
-1. Код в `src/arrays.py`, `src/matrix.py`, `src/tuples.py` (+ при желании `src/lib/*`).  
+1. Код в `src/lab02/arrays.py`, `src/lab02/matrix.py`, `src/lab02/tuples.py` (+ при желании `src/lib/*`).  
 2. `README.md` с кратким описанием, блоком кода и **примером запуска** каждой функции / мини-скрипта.  
 3. Скриншоты терминала в `images/`.
 
