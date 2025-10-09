@@ -32,7 +32,7 @@
 ```
 python_labs/
 ├─ README.md                        #Общий отчет
-├── requirements.txt                # openpyxl или xlsxwriter, по выбору
+├─ requirements.txt                # openpyxl или xlsxwriter, по выбору
 ├─ src/                             # здесь — все скрипты по заданиям
 |  ├─ lib/                          # Переиспользуемые модули - хранить здесь
 |  |  └── io_helpers.py             # Например чтение файлов из ЛР4
@@ -45,7 +45,7 @@ python_labs/
 │  |    └── __init__.py
 |  ........
 |  └─ lab10
-out├─ data/
+├─ data/
 |   ├── samples/
 │   │   ├── people.json             # пример входного JSON (список словарей)
 │   │   ├── people.csv              # пример входного CSV
@@ -123,10 +123,10 @@ data = [{"name": "Alice", "age": 22}, {"name": "Bob", "age": 25}]
 path = Path("data/out/people.json")
 
 with path.open("w", encoding="utf-8") as f:
-    json.dump(data, f, ensure_ascii=False, indent=2)
+    """ json.dump """
 
 with path.open(encoding="utf-8") as f:
-    print(json.load(f))
+    """ json.load """
 ```
 
 ### Пример 2. Работа с CSV
@@ -139,14 +139,14 @@ rows = [
 ]
 
 with open("data/out/people.csv", "w", newline="", encoding="utf-8") as f:
-    writer = csv.DictWriter(f, fieldnames=["name", "age", "city"])
-    writer.writeheader()
-    writer.writerows(rows)
+    """
+        csv.DictWriter
+    """
 
 with open("data/out/people.csv", encoding="utf-8") as f:
-    reader = csv.DictReader(f)
-    for row in reader:
-        print(row)
+    """
+        csv.DictReader(f)
+    """
 ```
 
 ### Пример 3. CSV → XLSX через openpyxl
@@ -159,14 +159,11 @@ ws = wb.active
 ws.title = "Sheet1"
 
 with open("data/samples/people.csv", encoding="utf-8") as f:
-    for row in csv.reader(f):
-        ws.append(row)
-
-for col in ws.columns:
-    max_len = max(len(str(cell.value)) if cell.value else 0 for cell in col)
-    ws.column_dimensions[col[0].column_letter].width = max(max_len + 2, 8)
-
-wb.save("data/out/people.xlsx")
+    """
+        ws.append for row in csv.reader(f)
+        
+        wb.save("data/out/people.xlsx")
+    """
 ```
 
 ### Пример 4. JSON → CSV
