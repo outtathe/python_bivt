@@ -27,6 +27,40 @@
   Python **3.хх+**.
 
 ---
+## Структура репозитория
+
+```
+python_labs/
+├─ README.md                        #Общий отчет
+├── requirements.txt                # openpyxl или xlsxwriter, по выбору
+├─ src/                             # здесь — все скрипты по заданиям
+|  ├─ lib/                          # Переиспользуемые модули - хранить здесь
+|  |  └── io_helpers.py             # Например чтение файлов из ЛР4
+|  ├─ lab01
+|  ........
+|  ├─ lab04  
+|  ├─ lab05/
+|  |    ├── json_csv.py             # JSON↔CSV
+│  |    ├── csv_xlsx.py             # CSV→XLSX
+│  |    └── __init__.py
+|  ........
+|  └─ lab10
+out├─ data/
+|   ├── samples/
+│   │   ├── people.json             # пример входного JSON (список словарей)
+│   │   ├── people.csv              # пример входного CSV
+│   │   └── cities.csv              # дополнительный CSV для демонстрации
+│   └── out/
+│       ├── people_from_json.csv    # результат JSON→CSV
+│       ├── people_from_csv.json    # результат CSV→JSON
+│       └── people.xlsx             # результат CSV→XLSX
+
+└─ images/                          # сюда — скриншоты работы программ
+   ├─ lab01
+   ........
+   └─ lab10
+```
+---
 
 ## Теоретическая часть
 
