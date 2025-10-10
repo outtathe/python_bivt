@@ -111,6 +111,53 @@ Python-модуль `csv`:
 - CSV → XLSX: перенос строк в лист Excel, установка ширины колонок.
 
 ---
+## ЗАДАНИЕ
+
+### Задание A — JSON ↔ CSV
+Реализовать модуль `src/lab05/json_csv.py` с функциями:
+```python
+def json_to_csv(json_path: str, csv_path: str) -> None:
+    """
+    Преобразует JSON-файл в CSV.
+    Поддерживает список словарей [{...}, {...}], заполняет отсутствующие поля пустыми строками.
+    Кодировка UTF-8. Порядок колонок — как в первом объекте или алфавитный (указать в README).
+    """
+def csv_to_json(csv_path: str, json_path: str) -> None:
+    """
+    Преобразует CSV в JSON (список словарей).
+    Заголовок обязателен, значения сохраняются как строки.
+    json.dump(..., ensure_ascii=False, indent=2)
+    """
+```
+
+#### **Требования**:
+ - Проверка ошибок: 
+    - отсутствующий файл, пустой JSON или CSV → ValueError.
+    - неверный тип файла, отсутствующий тип файла → 
+ - Не использовать внешние пакеты (только json, csv, pathlib).
+ - Все пути относительные.
+ - Кодировка — строго UTF-8.
+
+### Задание B — CSV → XLSX
+Реализовать модуль `src/lab05/csv_xlsx.py`:
+```python
+def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
+    """
+    Конвертирует CSV в XLSX.
+    Использовать openpyxl ИЛИ xlsxwriter.
+    Первая строка CSV — заголовок.
+    Лист называется "Sheet1".
+    Колонки — автоширина по длине текста (не менее 8 символов).
+    """
+```
+#### **Требования**:
+Ошибки чтения/записи — ValueError.
+Проверять, что файл CSV существует.
+Результат — открываемый XLSX с корректной структурой таблицы.
+
+
+
+---
 
 ## Примеры кода
 
@@ -171,14 +218,12 @@ with open("data/samples/people.csv", encoding="utf-8") as f:
 import json, csv
 
 with open("data/samples/people.json", encoding="utf-8") as jf:
-    data = json.load(jf)
-
-fieldnames = sorted(set().union(*[d.keys() for d in data]))
+    """ json.load """
 
 with open("data/out/people_from_json.csv", "w", newline="", encoding="utf-8") as cf:
-    writer = csv.DictWriter(cf, fieldnames=fieldnames)
-    writer.writeheader()
-    writer.writerows(data)
+    """
+        csv.DictReader(f)
+    """
 ```
 
 ---
