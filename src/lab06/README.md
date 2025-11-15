@@ -27,7 +27,6 @@
 ```
 python_labs/
 ├─ README.md                       #Общий отчет
-├─ requirements.txt                # openpyxl или xlsxwriter, по выбору
 ├─ src/                            # здесь — все скрипты по заданиям
 |  ├─ lib/                         # Переиспользуемые модули - хранить здесь
 |  |  └── io_helpers.py            

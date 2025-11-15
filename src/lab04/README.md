@@ -152,7 +152,6 @@ write_csv([("word","count"),("test",3)], "data/check.csv")  # создаст CSV
 ### Пример запуска
 ```bash
 python src/lab04/text_report.py                 # читает data/input.txt, пишет data/report.csv
-# или
 python src/lab04/text_report.py --in data/in.txt --out data/out.csv
 ```
 
