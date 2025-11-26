@@ -1,3 +1,5 @@
-## Здесь постепенно будут появляться новые лабы
+## Все лабы загружены
 
-![nyan-cat](../misc/img/general_material/nyan-cat.gif.avif)
+<p align="center">
+  <img src="../misc/img/general_material/9xYj7Tc.gif" />
+</p>
