@@ -267,8 +267,8 @@ def students_from_json(path):
 
 ## Полезные ссылки
 
--   Официальная документация `dataclasses`: https://docs.python.org/3/library/dataclasses.html\
+-   Официальная документация `dataclasses`: https://docs.python.org/3/library/dataclasses.html
 
--   Модуль `json`: https://docs.python.org/3/library/json.html\
+-   Модуль `json`: https://docs.python.org/3/library/json.html
 
 -   Работа с датами `(datetime)`: https://docs.python.org/3/library/datetime.html
