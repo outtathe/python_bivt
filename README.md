@@ -1,7 +1,8 @@
 # python_bivt
 
 Таблица с вашими успехами : [google_sheets](https://docs.google.com/spreadsheets/d/1Vv4Cx-p20WycxfkbqgDsBmUA4Vl5wfv0K7sKL53ehGI/edit?usp=sharing)
-# Хаб-репозиторий курса (просто и по делу)
+# Хаб-репозиторий курса [Uploading lecture4.pptx…]()
+
 
 В этом репозитории — **правила и ссылки**, а также **задания для лабораторных**.  
 Задания ищите тут: `./src/lab01/README.md`, `./src/lab02/README.md`, ...
