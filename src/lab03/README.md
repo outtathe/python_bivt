@@ -64,11 +64,11 @@ python_labs/
 
 
 ## Задание A — `src/lib/text.py`
-
+ 
 Реализуйте функции:
 
 1. `normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str`  
-   - Если `casefold=True` — привести к **casefold** (лучше, чем `lower` для Юникода).  
+   - Если `casefold=True` — привести к **casefold** (лучше, чем `lower` для Юникода). Если `casefold=False` - используем lower(). @changelog: 29.09
    - Если `yo2e=True` — заменить все `ё`/`Ё` на `е`/`Е`.  
    - Убрать невидимые управляющие символы (например, `\t`, `\r`) → заменить на пробелы, схлопнуть повторяющиеся пробелы в один.
 
