@@ -1,6 +1,6 @@
 # python_bivt
 
-Таблица с вашими успехами : https://docs.google.com/spreadsheets/d/13f18Bu5rw1RESllm6b8NBjrkCqDymt-BtSgZ3oMStfY/edit?usp=sharing
+Таблица с вашими успехами : https://docs.google.com/spreadsheets/d/1D-ecoqhxrTmVoRmE4EqZBHw4LNuC3p3VGdE_uezmGXc/edit?usp=sharing
 # Хаб-репозиторий курса 
 
 
